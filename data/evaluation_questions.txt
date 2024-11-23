@@ -1,0 +1,100 @@
+What is the average BMI for each blood pressure category?
+How many patients have high stress levels and abnormal blood pressure?
+What is the relationship between physical activity and BMI?
+Show the distribution of hemoglobin levels across different age groups.
+Compare smoking rates between patients with and without thyroid disorders.
+What percentage of patients in each stress level category have abnormal blood pressure?
+Calculate the average physical activity for patients with different BMI ranges.
+How does salt intake vary between patients with normal and abnormal blood pressure?
+What is the prevalence of chronic kidney disease in different age groups?
+Compare alcohol consumption patterns between smokers and non-smokers.
+What is the average age of patients with thyroid disorders?
+What is the correlation between stress levels and daily step count?
+What percentage of female patients are pregnant?
+What is the distribution of BMI across different stress levels?
+Compare hemoglobin levels between patients with high and low alcohol consumption.
+What is the relationship between genetic pedigree coefficient and blood pressure?
+How does physical activity vary by age group?
+What is the average salt intake for patients with kidney disease?
+Compare stress levels between smokers and non-smokers.
+What is the distribution of alcohol consumption across age groups?
+How many patients have both kidney disease and thyroid disorders?
+What is the average BMI for each combination of smoking status and stress level?
+Compare physical activity levels between pregnant and non-pregnant women.
+What is the relationship between age and blood pressure abnormalities?
+How does hemoglobin level vary with alcohol consumption?
+What percentage of patients have abnormal blood pressure in each age group?
+Compare genetic pedigree coefficients between patients with and without kidney disease.
+What is the average physical activity for each blood pressure category?
+How does salt intake correlate with blood pressure status?
+What is the distribution of stress levels among patients with thyroid disorders?
+Compare BMI between patients with high and low genetic pedigree coefficients.
+What percentage of smokers have abnormal blood pressure?
+How does alcohol consumption vary with stress levels?
+What is the average hemoglobin level for each BMI category?
+Compare physical activity between patients with different stress levels.
+What is the relationship between salt intake and kidney disease?
+How many patients fall into each combination of blood pressure and stress level?
+What is the average age of patients with abnormal blood pressure?
+Compare genetic pedigree coefficients across different age groups.
+What percentage of patients with high stress levels have thyroid disorders?
+How does BMI correlate with daily step count?
+What is the distribution of salt intake among smokers vs non-smokers?
+Compare alcohol consumption between patients with and without blood pressure abnormalities.
+What is the average physical activity level by gender?
+How does hemoglobin level vary across different BMI categories?
+What percentage of patients have multiple health conditions?
+Compare stress levels between patients with high and low physical activity.
+What is the relationship between age and alcohol consumption?
+How does genetic pedigree coefficient vary with blood pressure status?
+What is the distribution of BMI among patients with kidney disease?
+Compare salt intake between different age groups.
+What percentage of patients with thyroid disorders also have kidney disease?
+How does physical activity vary throughout the week?
+What is the average hemoglobin level by age group?
+Compare BMI between patients with different alcohol consumption levels.
+What is the relationship between stress level and salt intake?
+How many patients have abnormal blood pressure in each BMI category?
+What is the distribution of genetic pedigree coefficients among smokers?
+Compare physical activity levels between patients with and without kidney disease.
+What percentage of patients with high BMI have abnormal blood pressure?
+How does alcohol consumption relate to blood pressure status?
+What is the average age of patients with different stress levels?
+Compare hemoglobin levels between smokers and non-smokers.
+What is the relationship between BMI and kidney disease?
+How does genetic pedigree coefficient vary with age?
+What percentage of patients with thyroid disorders are smokers?
+Compare physical activity between different blood pressure categories.
+What is the distribution of salt intake across stress levels?
+How does alcohol consumption vary by gender?
+What is the average BMI for patients with different hemoglobin levels?
+Compare stress levels between age groups.
+What percentage of patients with kidney disease have high stress?
+How does physical activity relate to salt intake?
+What is the distribution of genetic pedigree coefficients by age?
+Compare BMI between patients with and without thyroid disorders.
+What is the relationship between alcohol consumption and kidney disease?
+How many patients have abnormal blood pressure in each hemoglobin category?
+What is the average physical activity level for different salt intake ranges?
+Compare stress levels between patients with and without blood pressure abnormalities.
+What percentage of smokers have high stress levels?
+How does BMI vary with salt intake?
+What is the distribution of hemoglobin levels among patients with thyroid disorders?
+Compare alcohol consumption patterns between different stress levels.
+What is the relationship between age and kidney disease?
+How does genetic pedigree coefficient relate to stress level?
+What percentage of patients with high physical activity have normal blood pressure?
+Compare salt intake between patients with and without thyroid disorders.
+What is the average BMI by gender and age group?
+How does hemoglobin level vary with stress level?
+What is the distribution of alcohol consumption among patients with kidney disease?
+Compare physical activity patterns between different genetic pedigree coefficient ranges.
+What percentage of patients with abnormal blood pressure have high salt intake?
+How does stress level relate to kidney disease?
+What is the average age of patients with different hemoglobin levels?
+Compare BMI between patients with high and low salt intake.
+What is the relationship between physical activity and thyroid disorders?
+How does genetic pedigree coefficient vary with smoking status?
+What percentage of patients with high alcohol consumption have abnormal blood pressure?
+Compare hemoglobin levels across different physical activity ranges.
+What is the distribution of salt intake among patients with different blood pressure status?

@@ -1,0 +1,702 @@
+[
+  {
+    "question": "What is the average BMI for each blood pressure category?",
+    "success": true,
+    "execution_time": 0.7425787448883057,
+    "error": null,
+    "sql_query": "SELECT Blood_Pressure_Abnormality, AVG(BMI) AS Average_BMI FROM health GROUP BY Blood_Pressure_Abnormality;"
+  },
+  {
+    "question": "How many patients have high stress levels and abnormal blood pressure?",
+    "success": true,
+    "execution_time": 0.47957730293273926,
+    "error": null,
+    "sql_query": "SELECT COUNT(*) AS Number_of_Patients FROM health WHERE Level_of_Stress = 3 AND Blood_Pressure_Abnormality = 1;"
+  },
+  {
+    "question": "What is the relationship between physical activity and BMI?",
+    "success": true,
+    "execution_time": 0.6840524673461914,
+    "error": null,
+    "sql_query": "SELECT AVG(physical_activity.Physical_activity) AS Avg_Steps, health.BMI FROM physical_activity JOIN health ON physical_activity.Patient_Number = health.Patient_Number GROUP BY BMI;"
+  },
+  {
+    "question": "Show the distribution of hemoglobin levels across different age groups.",
+    "success": true,
+    "execution_time": 0.6848585605621338,
+    "error": null,
+    "sql_query": "SELECT FLOOR(Age / 10) * 10 AS Age_Group, AVG(Level_of_Hemoglobin) as Avg_Hemoglobin FROM health GROUP BY Age_Group;"
+  },
+  {
+    "question": "Compare smoking rates between patients with and without thyroid disorders.",
+    "success": true,
+    "execution_time": 1.2486140727996826,
+    "error": null,
+    "sql_query": "SELECT AVG(CASE WHEN Adrenal_and_thyroid_disorders = 1 THEN Smoking ELSE NULL END) AS AvgSmokingRateWithThyroidDisorder, AVG(CASE WHEN Adrenal_and_thyroid_disorders = 0 THEN Smoking ELSE NULL END) AS AvgSmokingRateWithoutThyroidDisorder FROM health;"
+  },
+  {
+    "question": "What percentage of patients in each stress level category have abnormal blood pressure?",
+    "success": true,
+    "execution_time": 0.9513852596282959,
+    "error": null,
+    "sql_query": "SELECT Level_of_Stress, (COUNT(*) * 100.0 / SUM(COUNT(*)) OVER()) AS PercentageOfPatientsWithAbnormalBloodPressure FROM health WHERE Blood_Pressure_Abnormality = 1 GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "Calculate the average physical activity for patients with different BMI ranges.",
+    "success": true,
+    "execution_time": 2.5666182041168213,
+    "error": null,
+    "sql_query": "SELECT CASE WHEN BMI < 18.5 THEN 'Underweight' WHEN BMI >= 18.5 AND BMI <= 24.9 THEN 'Normal weight' WHEN BMI >= 25 AND BMI <= 29.9 THEN 'Overweight' ELSE 'Obese' END AS Weight_Category, AVG(Physical_activity) as Average_Steps FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY CASE WHEN BMI < 18.5 THEN 'Underweight' WHEN BMI >= 18.5 AND BMI <= 24.9 THEN 'Normal weight' WHEN BMI >= 25 AND BMI <= 29.9 THEN 'Overweight' ELSE 'Obese' END;"
+  },
+  {
+    "question": "How does salt intake vary between patients with normal and abnormal blood pressure?",
+    "success": true,
+    "execution_time": 0.7061872482299805,
+    "error": null,
+    "sql_query": "SELECT AVG(health.salt_content_in_the_diet) AS average_salt_intake, Blood_Pressure_Abnormality FROM health GROUP BY Blood_Pressure_Abnormality;"
+  },
+  {
+    "question": "What is the prevalence of chronic kidney disease in different age groups?",
+    "success": true,
+    "execution_time": 0.8969936370849609,
+    "error": null,
+    "sql_query": "SELECT Age, COUNT(*) AS Total_Patients, SUM(CASE WHEN Chronic_kidney_disease = 1 THEN 1 ELSE 0 END) / COUNT(*) * 100.0 AS Prevalence_Percentage FROM health GROUP BY ROUND(Age/10)*10;"
+  },
+  {
+    "question": "Compare alcohol consumption patterns between smokers and non-smokers.",
+    "success": true,
+    "execution_time": 0.4807405471801758,
+    "error": null,
+    "sql_query": "SELECT Smoking, AVG(alcohol_consumption_per_day) AS AvgAlcoholConsumptionPerDay FROM health GROUP BY Smoking;"
+  },
+  {
+    "question": "What is the average age of patients with thyroid disorders?",
+    "success": true,
+    "execution_time": 0.37112951278686523,
+    "error": null,
+    "sql_query": "SELECT AVG(Age) AS Average_Age FROM health WHERE Adrenal_and_thyroid_disorders = 1;"
+  },
+  {
+    "question": "What is the correlation between stress levels and daily step count?",
+    "success": false,
+    "execution_time": 0.6026039123535156,
+    "error": "Execution failed on sql 'SELECT CORR(Level_of_Stress, Physical_activity) AS StressStepCorrelation FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number;': no such function: CORR",
+    "sql_query": null
+  },
+  {
+    "question": "What percentage of female patients are pregnant?",
+    "success": false,
+    "execution_time": 0.44040417671203613,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "What is the distribution of BMI across different stress levels?",
+    "success": true,
+    "execution_time": 0.43451499938964844,
+    "error": null,
+    "sql_query": "SELECT Level_of_Stress, COUNT(BMI) AS BMICountDistribution FROM health GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "Compare hemoglobin levels between patients with high and low alcohol consumption.",
+    "success": false,
+    "execution_time": 0.5286202430725098,
+    "error": "Execution failed on sql 'SELECT AVG(Level_of_Hemoglobin) AS Avg_Hemoglobin, Alcohol_Consumption FROM health GROUP BY Alcohol_Consumption;': no such column: Alcohol_Consumption",
+    "sql_query": null
+  },
+  {
+    "question": "What is the relationship between genetic pedigree coefficient and blood pressure?",
+    "success": false,
+    "execution_time": 0.7177596092224121,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "How does physical activity vary by age group?",
+    "success": true,
+    "execution_time": 1.3516733646392822,
+    "error": null,
+    "sql_query": "SELECT Age, AVG(Physical_activity) AS AvgStepsPerDay FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY CASE WHEN Age BETWEEN 0 AND 18 THEN 'Child' WHEN Age BETWEEN 19 AND 64 THEN 'Adult' ELSE 'Senior' END;"
+  },
+  {
+    "question": "What is the average salt intake for patients with kidney disease?",
+    "success": true,
+    "execution_time": 0.5999224185943604,
+    "error": null,
+    "sql_query": "SELECT AVG(health.salt_content_in_the_diet) AS average_salt_intake FROM health WHERE Chronic_kidney_disease = 1;"
+  },
+  {
+    "question": "Compare stress levels between smokers and non-smokers.",
+    "success": true,
+    "execution_time": 0.3971827030181885,
+    "error": null,
+    "sql_query": "SELECT Smoking, AVG(Level_of_Stress) AS Average_Stress_Level FROM health GROUP BY Smoking;"
+  },
+  {
+    "question": "What is the distribution of alcohol consumption across age groups?",
+    "success": true,
+    "execution_time": 0.7119295597076416,
+    "error": null,
+    "sql_query": "SELECT FLOOR(Age / 10) * 10 AS Age_Group, AVG(alcohol_consumption_per_day) as Avg_Alcohol_Consumption FROM health GROUP BY Age_Group;"
+  },
+  {
+    "question": "How many patients have both kidney disease and thyroid disorders?",
+    "success": false,
+    "execution_time": 1.3152761459350586,
+    "error": "Execution failed on sql 'SELECT COUNT(DISTINCT health.Patient_Number) AS NumberOfPatientsWithBothConditions FROM health JOIN adrenal_and_thyroid_disorders ON health.Patient_Number = adrenal_and_thyroid_disorders.Patient_Number WHERE Chronic_kidney_disease = 1 AND Adrenal_and_thyroid_Disorders = 1;': no such table: adrenal_and_thyroid_disorders",
+    "sql_query": null
+  },
+  {
+    "question": "What is the average BMI for each combination of smoking status and stress level?",
+    "success": false,
+    "execution_time": 0.4807875156402588,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "Compare physical activity levels between pregnant and non-pregnant women.",
+    "success": false,
+    "execution_time": 1.3190791606903076,
+    "error": "Execution failed on sql 'SELECT p.Pregnancy, AVG(pa.Physical_activity) AS AvgStepsPerDay FROM health h JOIN physical_activity pa ON h.Patient_Number = pa.Patient_Number WHERE h.Sex = 1 AND (h.Pregnancy = 0 OR h.Pregnancy = 1) GROUP BY p.Pregnancy;': no such column: p.Pregnancy",
+    "sql_query": null
+  },
+  {
+    "question": "What is the relationship between age and blood pressure abnormalities?",
+    "success": false,
+    "execution_time": 0.5021605491638184,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "How does hemoglobin level vary with alcohol consumption?",
+    "success": false,
+    "execution_time": 0.6373469829559326,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "What percentage of patients have abnormal blood pressure in each age group?",
+    "success": true,
+    "execution_time": 0.8665900230407715,
+    "error": null,
+    "sql_query": "SELECT ROUND(SUM(CASE WHEN Blood_Pressure_Abnormality = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS Percentage, FLOOR(Age/10)*10 as AgeGroup FROM health GROUP BY AgeGroup;"
+  },
+  {
+    "question": "Compare genetic pedigree coefficients between patients with and without kidney disease.",
+    "success": true,
+    "execution_time": 0.43071937561035156,
+    "error": null,
+    "sql_query": "SELECT Genetic_Pedigree_Coefficient, Chronic_kidney_disease FROM health GROUP BY Patient_Number;"
+  },
+  {
+    "question": "What is the average physical activity for each blood pressure category?",
+    "success": true,
+    "execution_time": 0.7147402763366699,
+    "error": null,
+    "sql_query": "SELECT Blood_Pressure_Abnormality, AVG(Physical_activity) AS Average_Activity FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY Blood_Pressure_Abnormality;"
+  },
+  {
+    "question": "How does salt intake correlate with blood pressure status?",
+    "success": true,
+    "execution_time": 1.2909517288208008,
+    "error": null,
+    "sql_query": "SELECT AVG(CASE WHEN Blood_Pressure_Abnormality = 1 THEN salt_content_in_the_diet ELSE NULL END) AS avg_salt_intake, COUNT(*) FILTER (WHERE Blood_Pressure_Abnormality = 0) / CAST(COUNT(*) AS REAL) AS normal_blood_pressure_ratio FROM health;"
+  },
+  {
+    "question": "What is the distribution of stress levels among patients with thyroid disorders?",
+    "success": true,
+    "execution_time": 0.6484475135803223,
+    "error": null,
+    "sql_query": "SELECT Level_of_Stress, COUNT(*) AS NumberOfPatients FROM health WHERE Adrenal_and_thyroid_disorders = 1 GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "Compare BMI between patients with high and low genetic pedigree coefficients.",
+    "success": true,
+    "execution_time": 0.5155947208404541,
+    "error": null,
+    "sql_query": "SELECT AVG(BMI) AS Average_BMI, Genetic_Pedigree_Coefficient FROM health GROUP BY Genetic_Pedigree_Coefficient;"
+  },
+  {
+    "question": "What percentage of smokers have abnormal blood pressure?",
+    "success": true,
+    "execution_time": 0.8784220218658447,
+    "error": null,
+    "sql_query": "SELECT (SUM(CASE WHEN Smoking = 1 AND Blood_Pressure_Abnormality = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS \"Percentage of smokers with abnormal blood pressure\" FROM health;"
+  },
+  {
+    "question": "How does alcohol consumption vary with stress levels?",
+    "success": true,
+    "execution_time": 0.5344700813293457,
+    "error": null,
+    "sql_query": "SELECT AVG(alcohol_consumption_per_day) AS average_alcohol, Level_of_Stress FROM health GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "What is the average hemoglobin level for each BMI category?",
+    "success": true,
+    "execution_time": 0.42209863662719727,
+    "error": null,
+    "sql_query": "SELECT BMI, AVG(Level_of_Hemoglobin) AS Average_Hemoglobin FROM health GROUP BY BMI;"
+  },
+  {
+    "question": "Compare physical activity between patients with different stress levels.",
+    "success": true,
+    "execution_time": 0.7827596664428711,
+    "error": null,
+    "sql_query": "SELECT Level_of_Stress, AVG(Physical_activity) AS AvgStepsPerDay FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "What is the relationship between salt intake and kidney disease?",
+    "success": true,
+    "execution_time": 1.2667131423950195,
+    "error": null,
+    "sql_query": "SELECT AVG(health.salt_content_in_the_diet) AS average_salt, SUM(CASE WHEN health.Chronic_kidney_disease = 1 THEN 1 ELSE 0 END)/COUNT(*) * 100 AS percentage_with_kidney_disease FROM health GROUP BY Chronic_kidney_disease;"
+  },
+  {
+    "question": "How many patients fall into each combination of blood pressure and stress level?",
+    "success": true,
+    "execution_time": 0.6544814109802246,
+    "error": null,
+    "sql_query": "SELECT Blood_Pressure_Abnormality, Level_of_Stress, COUNT(Patient_Number) AS NumberOfPatients FROM health GROUP BY Blood_Pressure_Abnormality, Level_of_Stress;"
+  },
+  {
+    "question": "What is the average age of patients with abnormal blood pressure?",
+    "success": true,
+    "execution_time": 0.30454397201538086,
+    "error": null,
+    "sql_query": "SELECT AVG(Age) AS Average_Age FROM health WHERE Blood_Pressure_Abnormality = 1;"
+  },
+  {
+    "question": "Compare genetic pedigree coefficients across different age groups.",
+    "success": true,
+    "execution_time": 0.5588014125823975,
+    "error": null,
+    "sql_query": "SELECT Age, AVG(Genetic_Pedigree_Coefficient) AS Avg_GP_Coefficient FROM health GROUP BY FLOOR(Age / 10);"
+  },
+  {
+    "question": "What percentage of patients with high stress levels have thyroid disorders?",
+    "success": true,
+    "execution_time": 0.9938733577728271,
+    "error": null,
+    "sql_query": "SELECT (COUNT(*) * 100.0 / SUM(CASE WHEN Level_of_Stress = 3 THEN 1 ELSE 0 END)) AS PercentageWithThyroidDisorders FROM health WHERE Adrenal_and_thyroid_disorders = 1 AND Level_of_Stress = 3;"
+  },
+  {
+    "question": "How does BMI correlate with daily step count?",
+    "success": false,
+    "execution_time": 0.5205349922180176,
+    "error": "Execution failed on sql 'SELECT CORR(BMI, Physical_activity) AS BMI_Step_Correlation FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number;': no such function: CORR",
+    "sql_query": null
+  },
+  {
+    "question": "What is the distribution of salt intake among smokers vs non-smokers?",
+    "success": false,
+    "execution_time": 0.3142092227935791,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "Compare alcohol consumption between patients with and without blood pressure abnormalities.",
+    "success": true,
+    "execution_time": 0.6864960193634033,
+    "error": null,
+    "sql_query": "SELECT AVG(alcohol_consumption_per_day) AS avg_drinkers, 0 as non_abnormalities FROM health WHERE Blood_Pressure_Abnormality = 1 GROUP BY blood_pressure_abnormality;"
+  },
+  {
+    "question": "What is the average physical activity level by gender?",
+    "success": true,
+    "execution_time": 0.5071117877960205,
+    "error": null,
+    "sql_query": "SELECT sex, AVG(physical_activity) AS average_steps FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY sex;"
+  },
+  {
+    "question": "How does hemoglobin level vary across different BMI categories?",
+    "success": true,
+    "execution_time": 0.44650888442993164,
+    "error": null,
+    "sql_query": "SELECT BMI, AVG(Level_of_Hemoglobin) AS Average_Hemoglobin FROM health GROUP BY BMI;"
+  },
+  {
+    "question": "What percentage of patients have multiple health conditions?",
+    "success": true,
+    "execution_time": 1.3806021213531494,
+    "error": null,
+    "sql_query": "SELECT (COUNT(DISTINCT Patient_Number) - COUNT(*)) / CAST((SELECT COUNT(*) FROM health) AS FLOAT) * 100.0 as PercentageOfPatientsWithMultipleConditions FROM (SELECT patient_number, count(*) > 1 as HasMoreThanOneCondition FROM health GROUP BY Patient_Number HAVING COUNT(*) > 1) AS SubQuery;"
+  },
+  {
+    "question": "Compare stress levels between patients with high and low physical activity.",
+    "success": false,
+    "execution_time": 2.2822766304016113,
+    "error": "Execution failed on sql 'SELECT AVG(CASE WHEN physical_activity.Physical_activity > (SELECT PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY Physical_activity) FROM physical_activity) THEN Level_of_Stress ELSE NULL END) AS Avg_stress_high_physical_activity, AVG(CASE WHEN physical_activity.Physical_activity <= (SELECT PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY Physical_activity) FROM physical_activity) THEN Level_of_Stress ELSE NULL END) AS Avg_stress_low_physical_activity FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number;': near \"(\": syntax error",
+    "sql_query": null
+  },
+  {
+    "question": "What is the relationship between age and alcohol consumption?",
+    "success": false,
+    "execution_time": 0.36521005630493164,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "How does genetic pedigree coefficient vary with blood pressure status?",
+    "success": true,
+    "execution_time": 0.7334942817687988,
+    "error": null,
+    "sql_query": "SELECT Genetic_Pedigree_Coefficient, AVG(Blood_Pressure_Abnormality) AS Avg_Blood_Pressure_Status FROM health GROUP BY Genetic_Pedigree_Coefficient;"
+  },
+  {
+    "question": "What is the distribution of BMI among patients with kidney disease?",
+    "success": true,
+    "execution_time": 0.5759506225585938,
+    "error": null,
+    "sql_query": "SELECT AVG(BMI) AS Average_BMI, MIN(BMI), MAX(BMI), COUNT(*) FROM health WHERE Chronic_kidney_disease = 1;"
+  },
+  {
+    "question": "Compare salt intake between different age groups.",
+    "success": true,
+    "execution_time": 1.114974021911621,
+    "error": null,
+    "sql_query": "SELECT Age, AVG(salt_content_in_the_diet) AS AverageSaltIntake FROM health GROUP BY CASE WHEN Age BETWEEN 0 AND 18 THEN 'Child' WHEN Age BETWEEN 19 AND 65 THEN 'Adult' ELSE 'Senior' END;"
+  },
+  {
+    "question": "What percentage of patients with thyroid disorders also have kidney disease?",
+    "success": true,
+    "execution_time": 0.9393515586853027,
+    "error": null,
+    "sql_query": "SELECT (COUNT(*) * 100.0) / SUM(Chronic_kidney_disease = 1) AS percentage FROM health WHERE Adrenal_and_thyroid_disorders = 1 AND Chronic_kidney_disease = 1;"
+  },
+  {
+    "question": "How does physical activity vary throughout the week?",
+    "success": true,
+    "execution_time": 0.39483022689819336,
+    "error": null,
+    "sql_query": "SELECT Day_Number, AVG(Physical_activity) AS AverageStepsPerDay FROM physical_activity GROUP BY Day_Number;"
+  },
+  {
+    "question": "What is the average hemoglobin level by age group?",
+    "success": true,
+    "execution_time": 0.623443603515625,
+    "error": null,
+    "sql_query": "SELECT FLOOR(Age / 10) * 10 AS Age_Group, AVG(Level_of_Hemoglobin) as Avg_Hemoglobin FROM health GROUP BY Age_Group;"
+  },
+  {
+    "question": "Compare BMI between patients with different alcohol consumption levels.",
+    "success": true,
+    "execution_time": 0.468050479888916,
+    "error": null,
+    "sql_query": "SELECT AVG(BMI) AS Average_BMI, alcohol_consumption_per_day FROM health GROUP BY alcohol_consumption_per_day;"
+  },
+  {
+    "question": "What is the relationship between stress level and salt intake?",
+    "success": true,
+    "execution_time": 0.7500760555267334,
+    "error": null,
+    "sql_query": "SELECT AVG(Level_of_Stress) AS Average_Stress, AVG(salt_content_in_the_diet) AS Avg_Salt_Intake FROM health GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "How many patients have abnormal blood pressure in each BMI category?",
+    "success": true,
+    "execution_time": 0.5757639408111572,
+    "error": null,
+    "sql_query": "SELECT BMI, COUNT(DISTINCT Patient_Number) AS NumberOfPatientsWithAbnormalBloodPressure FROM health WHERE Blood_Pressure_Abnormality = 1 GROUP BY BMI;"
+  },
+  {
+    "question": "What is the distribution of genetic pedigree coefficients among smokers?",
+    "success": true,
+    "execution_time": 0.5340626239776611,
+    "error": null,
+    "sql_query": "SELECT Genetic_Pedigree_Coefficient, COUNT(*) as Count FROM health WHERE Smoking = 1 GROUP BY Genetic_Pedigree_Coefficient;"
+  },
+  {
+    "question": "Compare physical activity levels between patients with and without kidney disease.",
+    "success": true,
+    "execution_time": 0.8841302394866943,
+    "error": null,
+    "sql_query": "SELECT AVG(Physical_activity) AS AvgSteps, Chronic_kidney_disease FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY Chronic_kidney_disease;"
+  },
+  {
+    "question": "What percentage of patients with high BMI have abnormal blood pressure?",
+    "success": false,
+    "execution_time": 1.0121541023254395,
+    "error": "Execution failed on sql 'SELECT (COUNT(*) * 100.0 / SUM(SUM(BMI))) AS percentage_high_bmi_abnormal_bp FROM health WHERE BMI > threshold -- Replace 'threshold' with the specific value defining high BMI in your context AND Blood_Pressure_Abnormality = 1;': misuse of aggregate function SUM()",
+    "sql_query": null
+  },
+  {
+    "question": "How does alcohol consumption relate to blood pressure status?",
+    "success": false,
+    "execution_time": 0.9332797527313232,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "What is the average age of patients with different stress levels?",
+    "success": true,
+    "execution_time": 0.38170552253723145,
+    "error": null,
+    "sql_query": "SELECT Level_of_Stress, AVG(Age) AS Average_Age FROM health GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "Compare hemoglobin levels between smokers and non-smokers.",
+    "success": true,
+    "execution_time": 1.1516633033752441,
+    "error": null,
+    "sql_query": "SELECT Blood_Pressure_Abnormality, AVG(Level_of_Hemoglobin) AS Avg_Hemoglobin FROM health WHERE Smoking = 1 OR Smoking = 0 -- Include both smokers and non-smokers in the result set. GROUP BY Blood_Pressure_Abnormality;"
+  },
+  {
+    "question": "What is the relationship between BMI and kidney disease?",
+    "success": true,
+    "execution_time": 0.9636237621307373,
+    "error": null,
+    "sql_query": "SELECT AVG(BMI) AS Average_BMI, SUM(CASE WHEN Chronic_kidney_disease = 1 THEN 1 ELSE 0 END) / COUNT(*) * 100.0 AS Percentage_with_Kidney_Disease FROM health;"
+  },
+  {
+    "question": "How does genetic pedigree coefficient vary with age?",
+    "success": true,
+    "execution_time": 0.4380316734313965,
+    "error": null,
+    "sql_query": "SELECT AVG(Genetic_Pedigree_Coefficient) AS Avg_Coef, Age FROM health GROUP BY Age;"
+  },
+  {
+    "question": "What percentage of patients with thyroid disorders are smokers?",
+    "success": true,
+    "execution_time": 0.8650252819061279,
+    "error": null,
+    "sql_query": "SELECT (SUM(CASE WHEN adrenal_and_thyroid_disorders = 1 AND smoking = 1 THEN 1 ELSE 0 END) * 1.0 / COUNT(*)) AS percentage_smokers_with_thyroid_disorder FROM health;"
+  },
+  {
+    "question": "Compare physical activity between different blood pressure categories.",
+    "success": true,
+    "execution_time": 0.8666436672210693,
+    "error": null,
+    "sql_query": "SELECT Health.Blood_Pressure_Abnormality, AVG(Physical_activity) AS AvgStepsPerDay FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY Blood_Pressure_Abnormality;"
+  },
+  {
+    "question": "What is the distribution of salt intake across stress levels?",
+    "success": true,
+    "execution_time": 0.5358152389526367,
+    "error": null,
+    "sql_query": "SELECT Level_of_Stress, AVG(salt_content_in_the_diet) AS average_salt_intake FROM health GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "How does alcohol consumption vary by gender?",
+    "success": true,
+    "execution_time": 0.4231407642364502,
+    "error": null,
+    "sql_query": "SELECT Sex, AVG(alcohol_consumption_per_day) AS average_alcohol_consumption FROM health GROUP BY Sex;"
+  },
+  {
+    "question": "What is the average BMI for patients with different hemoglobin levels?",
+    "success": true,
+    "execution_time": 0.45228004455566406,
+    "error": null,
+    "sql_query": "SELECT AVG(BMI) AS Average_BMI, Level_of_Hemoglobin FROM health GROUP BY Level_of_Hemoglobin;"
+  },
+  {
+    "question": "Compare stress levels between age groups.",
+    "success": true,
+    "execution_time": 1.060462236404419,
+    "error": null,
+    "sql_query": "SELECT Age, AVG(Level_of_Stress) AS Average_Stress_Level FROM health GROUP BY CASE WHEN Age BETWEEN 0 AND 18 THEN 'Child' WHEN Age BETWEEN 19 AND 64 THEN 'Adult' ELSE 'Senior' END;"
+  },
+  {
+    "question": "What percentage of patients with kidney disease have high stress?",
+    "success": true,
+    "execution_time": 0.8909766674041748,
+    "error": null,
+    "sql_query": "SELECT (COUNT(*) * 100.0 / SUM(Chronic_kidney_disease)) AS percentage_high_stress_patients FROM health WHERE Chronic_kidney_disease = 1 AND Level_of_Stress = 3;"
+  },
+  {
+    "question": "How does physical activity relate to salt intake?",
+    "success": true,
+    "execution_time": 0.9150660037994385,
+    "error": null,
+    "sql_query": "SELECT AVG(physical_activity.Physical_activity) AS AvgSteps, health.salt_content_in_the_diet FROM physical_activity JOIN health ON physical_activity.Patient_Number = health.Patient_Number GROUP BY salt_content_in_the_diet;"
+  },
+  {
+    "question": "What is the distribution of genetic pedigree coefficients by age?",
+    "success": true,
+    "execution_time": 0.4942460060119629,
+    "error": null,
+    "sql_query": "SELECT Age, AVG(Genetic_Pedigree_Coefficient) AS Avg_Coef, COUNT(*) AS TotalPatients FROM health GROUP BY Age;"
+  },
+  {
+    "question": "Compare BMI between patients with and without thyroid disorders.",
+    "success": true,
+    "execution_time": 1.208890438079834,
+    "error": null,
+    "sql_query": "SELECT AVG(CASE WHEN adrenal_and_thyroid_disorders = 1 THEN BMI ELSE NULL END) AS avg_BMI_with_thyroid_issues, AVG(CASE WHEN adrenal_and_thyroid_disorders = 0 THEN BMI ELSE NULL END) AS avg_BMI_without_thyroid_issues FROM health;"
+  },
+  {
+    "question": "What is the relationship between alcohol consumption and kidney disease?",
+    "success": true,
+    "execution_time": 0.95754075050354,
+    "error": null,
+    "sql_query": "SELECT AVG(alcohol_consumption_per_day) AS avg_alcohol, SUM(CASE WHEN Chronic_kidney_disease = 1 THEN 1 ELSE 0 END)/COUNT(*) * 1.0 as kidney_disease_prevalence FROM health;"
+  },
+  {
+    "question": "How many patients have abnormal blood pressure in each hemoglobin category?",
+    "success": true,
+    "execution_time": 0.7454395294189453,
+    "error": null,
+    "sql_query": "SELECT Level_of_Hemoglobin, COUNT(Patient_Number) AS NumberOfPatientsWithAbnormalBP FROM health WHERE Blood_Pressure_Abnormality = 1 GROUP BY Level_of_Hemoglobin;"
+  },
+  {
+    "question": "What is the average physical activity level for different salt intake ranges?",
+    "success": true,
+    "execution_time": 1.7861847877502441,
+    "error": null,
+    "sql_query": "SELECT AVG(Physical_activity) AS AverageActivity, CASE WHEN salt_content_in_the_diet < 50 THEN 'Less than 50 mg/day' WHEN salt_content_in_the_diet BETWEEN 50 AND 100 THEN 'Between 50 and 100 mg/day' ELSE 'More than 100 mg/day' END AS SaltIntakeRange FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY SaltIntakeRange;"
+  },
+  {
+    "question": "Compare stress levels between patients with and without blood pressure abnormalities.",
+    "success": true,
+    "execution_time": 0.5364205837249756,
+    "error": null,
+    "sql_query": "SELECT AVG(Level_of_Stress) AS Avg_Stress, Blood_Pressure_Abnormality FROM health GROUP BY Blood_Pressure_Abnormality;"
+  },
+  {
+    "question": "What percentage of smokers have high stress levels?",
+    "success": true,
+    "execution_time": 0.7501511573791504,
+    "error": null,
+    "sql_query": "SELECT (COUNT(*) * 100.0 / SUM(smoking)) AS percentage_of_high_stress_levels_among_smokers FROM health WHERE smoking = 1 AND Level_of_Stress = 3;"
+  },
+  {
+    "question": "How does BMI vary with salt intake?",
+    "success": true,
+    "execution_time": 0.4973418712615967,
+    "error": null,
+    "sql_query": "SELECT AVG(BMI) AS Average_BMI, salt_content_in_the_diet FROM health GROUP BY salt_content_in_the_diet;"
+  },
+  {
+    "question": "What is the distribution of hemoglobin levels among patients with thyroid disorders?",
+    "success": true,
+    "execution_time": 0.6420919895172119,
+    "error": null,
+    "sql_query": "SELECT AVG(Level_of_Hemoglobin) AS Avg_Hemoglobin, COUNT(*) AS Patient_Count FROM health WHERE Adrenal_and_thyroid_disorders = 1;"
+  },
+  {
+    "question": "Compare alcohol consumption patterns between different stress levels.",
+    "success": true,
+    "execution_time": 0.5393610000610352,
+    "error": null,
+    "sql_query": "SELECT Level_of_Stress, AVG(alcohol_consumption_per_day) AS AvgAlcoholConsumptionPerDay FROM health GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "What is the relationship between age and kidney disease?",
+    "success": true,
+    "execution_time": 0.8485133647918701,
+    "error": null,
+    "sql_query": "SELECT AVG(Age) AS Average_Age, COUNT(*) FILTER (WHERE Chronic_kidney_disease = 1) / COUNT(*) * 100.0 AS Percentage_with_Kidney_Disease FROM health;"
+  },
+  {
+    "question": "How does genetic pedigree coefficient relate to stress level?",
+    "success": true,
+    "execution_time": 0.7757036685943604,
+    "error": null,
+    "sql_query": "SELECT AVG(Genetic_Pedigree_Coefficient) AS Avg_Coef, CASE WHEN Level_of_Stress = 1 THEN 'Low' ELSE NULL END as StressLevel FROM health GROUP BY StressLevel;"
+  },
+  {
+    "question": "What percentage of patients with high physical activity have normal blood pressure?",
+    "success": false,
+    "execution_time": 2.138580322265625,
+    "error": "Execution failed on sql 'SELECT (COUNT(*) * 100.0 / SUM(total_patients)) AS percentage FROM ( SELECT pa.Patient_Number, COUNT(pa.Day_Number) as total_physical_activity FROM physical_activity pa GROUP BY pa.Patient_Number HAVING COUNT(pa.Day_Number) > 10 -- Assuming high activity is more than average steps per day (e.g., above the median or a defined threshold). Adjust this value based on actual criteria for 'high' physical activity in your context. ) as active_patients, health h WHERE pa.Patient_Number = h.Patient_Number AND h.Blood_Pressure_Abnormality = 0;': incomplete input",
+    "sql_query": null
+  },
+  {
+    "question": "Compare salt intake between patients with and without thyroid disorders.",
+    "success": false,
+    "execution_time": 1.1462957859039307,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "What is the average BMI by gender and age group?",
+    "success": true,
+    "execution_time": 0.6000218391418457,
+    "error": null,
+    "sql_query": "SELECT Sex, FLOOR(Age / 10) * 10 AS Age_Group, AVG(BMI) as Average_BMI FROM health GROUP BY Sex, Age_Group;"
+  },
+  {
+    "question": "How does hemoglobin level vary with stress level?",
+    "success": true,
+    "execution_time": 0.54544997215271,
+    "error": null,
+    "sql_query": "SELECT AVG(Level_of_Hemoglobin) AS Avg_Hemoglobin, Level_of_Stress FROM health GROUP BY Level_of_Stress;"
+  },
+  {
+    "question": "What is the distribution of alcohol consumption among patients with kidney disease?",
+    "success": true,
+    "execution_time": 0.5878582000732422,
+    "error": null,
+    "sql_query": "SELECT AVG(alcohol_consumption_per_day) AS average_alcohol, COUNT(*) as patient_count FROM health WHERE Chronic_kidney_disease = 1;"
+  },
+  {
+    "question": "Compare physical activity patterns between different genetic pedigree coefficient ranges.",
+    "success": true,
+    "execution_time": 0.9878928661346436,
+    "error": null,
+    "sql_query": "SELECT Genetic_Pedigree_Coefficient, AVG(Physical_activity) AS AvgStepsPerDay FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number GROUP BY Genetic_Pedigree_Coefficient;"
+  },
+  {
+    "question": "What percentage of patients with abnormal blood pressure have high salt intake?",
+    "success": false,
+    "execution_time": 0.8121476173400879,
+    "error": "Execution failed on sql 'SELECT (COUNT(*) * 100.0 / SUM(SUM(Blood_Pressure_Abnormality))) AS percentage FROM health WHERE Blood_Pressure_Abnormality = 1 AND salt_content_in_the_diet > threshold;': misuse of aggregate function SUM()",
+    "sql_query": null
+  },
+  {
+    "question": "How does stress level relate to kidney disease?",
+    "success": false,
+    "execution_time": 0.45042920112609863,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "What is the average age of patients with different hemoglobin levels?",
+    "success": true,
+    "execution_time": 0.4446859359741211,
+    "error": null,
+    "sql_query": "SELECT AVG(Age) AS Average_Age, Level_of_Hemoglobin FROM health GROUP BY Level_of_Hemoglobin;"
+  },
+  {
+    "question": "Compare BMI between patients with high and low salt intake.",
+    "success": true,
+    "execution_time": 1.0564520359039307,
+    "error": null,
+    "sql_query": "SELECT AVG(BMI) AS Average_BMI, salt_content_in_the_diet FROM health GROUP BY CASE WHEN salt_content_in_the_diet > (SELECT AVG(salt_content_in_the_diet) FROM health) THEN 'High' ELSE 'Low' END;"
+  },
+  {
+    "question": "What is the relationship between physical activity and thyroid disorders?",
+    "success": true,
+    "execution_time": 1.2245075702667236,
+    "error": null,
+    "sql_query": "SELECT AVG(physical_activity.Physical_activity) AS Avg_Steps, COUNT(*) FILTER (WHERE adrenal_and_thyroid_disorders = 1) / COUNT(*) * 100 AS Percentage_with_Thyroid_Disorder FROM health JOIN physical_activity ON health.Patient_Number = physical_activity.Patient_Number;"
+  },
+  {
+    "question": "How does genetic pedigree coefficient vary with smoking status?",
+    "success": true,
+    "execution_time": 0.2830331325531006,
+    "error": null,
+    "sql_query": "SELECT Genetic_Pedigree_Coefficient, Smoking FROM health;"
+  },
+  {
+    "question": "What percentage of patients with high alcohol consumption have abnormal blood pressure?",
+    "success": false,
+    "execution_time": 0.7954182624816895,
+    "error": "Execution failed on sql 'SELECT (COUNT(*) * 100.0 / SUM(CASE WHEN alcohol_consumption_per_day > threshold THEN 1 ELSE 0 END)) AS percentage FROM health WHERE blood_pressure_abnormality = 1 AND smoking = 1;': no such column: threshold",
+    "sql_query": null
+  },
+  {
+    "question": "Compare hemoglobin levels across different physical activity ranges.",
+    "success": false,
+    "execution_time": 1.4817981719970703,
+    "error": null,
+    "sql_query": null
+  },
+  {
+    "question": "What is the distribution of salt intake among patients with different blood pressure status?",
+    "success": true,
+    "execution_time": 0.6575846672058105,
+    "error": null,
+    "sql_query": "SELECT Blood_Pressure_Abnormality, AVG(salt_content_in_the_diet) AS average_salt_intake FROM health GROUP BY Blood_Pressure_Abnormality;"
+  }
+]
